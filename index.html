@@ -141,6 +141,8 @@
             </div>
           </div>
     
+          
+    
         </div>
       </div>
     </div>
@@ -270,6 +272,9 @@
     </section>
 
 
+   
+
+
     <section class="site-section bg-primary" id="contact-section">
       <div class="container">
         <div class="row">
@@ -280,28 +285,28 @@
         <form id="submit-form" action="" >
           <div class="row mb-4">
             <div class="form-group col-6">
-              <input type="text" class="form-control" placeholder="First name" name="First name">
+              <input type="text" class="form-control" placeholder="First name" name="First name" required>
             </div>
             <div class="form-group col-6">
-              <input type="text" class="form-control" placeholder="Full name" name="Full name">
+              <input type="text" class="form-control" placeholder="Full name" name="Full name" required>
             </div>
           </div>
 
           <div class="row mb-4">
             <div class="form-group col-12">
-              <input type="email" class="form-control" placeholder="Email address" name="Email address">
+              <input type="email" class="form-control" placeholder="Email address" name="Email address" required>
             </div>
           </div>
 
           <div class="row mb-4">
             <div class="form-group col-12">
-              <input type="text" class="form-control" placeholder="Subject of the message" name="Subject of the message">
+              <input type="text" class="form-control" placeholder="Subject of the message" name="Subject of the message" required>
             </div>
           </div>
 
           <div class="row mb-4">
             <div class="form-group col-12">
-              <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Type your message here.." ></textarea>
+              <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Type your message here.." required></textarea>
             </div>
           </div>
 
@@ -320,6 +325,8 @@
        
           <div class="col-md-3">
             <h3 class="footer-title">Follow Me</h3>
+            <!-- <a href="#" class="social-circle p-2"><span class="icon-twitter"></span></a> -->
+            <!-- <a href="#" class="social-circle p-2"><span class="icon-facebook"></span></a> -->
             <a href="https://instagram.com/muhammedijaz.kp?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D" class="social-circle p-2"><span class="icon-instagram"></span></a>
             <a href="https://wa.me/+919778200437" class="social-circle p-2"><span class="icon-whatsapp"></span></a>
             <a href="mailto:kpijaz16@gmail.com" class="social-circle p-2"><span class="icon-gmail"></span></a>
@@ -354,7 +361,7 @@
   
   <script src="js/main.js"></script>
 
-  <script>
+  <!-- <script>
     $("#submit-form").submit((e)=>{
         e.preventDefault()
         $.ajax({
@@ -372,6 +379,46 @@
             }
         })
     })
-</script>
+ </script> -->
+ <script>
+  $("#submit-form").submit((e) => {
+      e.preventDefault();
+  
+      // Validate form fields before submission
+      var formValid = true;
+  
+      // Check if any of the required fields are empty
+      $("#submit-form [required]").each(function () {
+          if ($(this).val().trim() === "") {
+              formValid = false;
+              return false; // Exit the loop early
+          }
+      });
+  
+      if (!formValid) {
+          alert("Please fill out all required fields.");
+          return;
+      }
+  
+      // All required fields are filled, proceed with form submission
+      $.ajax({
+          url: "https://script.google.com/macros/s/AKfycby_aEEsBt53dehyrK46BLTYzoYTsjEH82uiM1bbNha2z5bgO9B33dhE8hfcPYgVpoEl2w/exec",
+          data: $("#submit-form").serialize(),
+          method: "post",
+          success: function (response) {
+              alert("Form submitted successfully");
+              window.location.reload();
+          },
+          error: function (err) {
+              alert("Something went wrong");
+          }
+      });
+  });
+  </script>
+  
+<!-- ---------------------------------------------------------------------------------------- -->
+
+
+
   </body>
 </html>
